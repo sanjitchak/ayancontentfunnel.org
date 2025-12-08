@@ -2,40 +2,580 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Content Funnel</title>
+  <title>Content Funnel - Executive Coaches</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-page: #f5f7fb;
+      --bg-card: #f0f2f7;
+      --bg-cta-gradient-start: #2563eb;
+      --bg-cta-gradient-end: #4f46e5;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --accent: #2563eb;
+      --accent-light: #ebf2ff;
+      --border-radius-card: 18px;
+      --shadow-soft: 0 18px 35px rgba(15, 23, 42, 0.08);
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #000;
-    }
-    .iframe-wrapper {
-      position: fixed;
-      inset: 0;
-      border: none;
       margin: 0;
-      padding: 0;
-      overflow: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
     }
-    .iframe-wrapper iframe {
-      width: 100%;
-      height: 100%;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 72px;
+    }
+
+    /* Header */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
       border: none;
+      background-color: var(--accent);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+        background-color 0.1s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Hero */
+
+    .hero {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 64px;
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 34px;
+      line-height: 1.25;
+      font-weight: 800;
+      margin: 0 0 16px;
+    }
+
+    .hero-title .highlight {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 4px;
+    }
+
+    .hero-subline {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-body {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-bullets {
+      text-align: left;
+      max-width: 640px;
+      margin: 0 auto 28px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-bullet-title {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .hero-bullet-copy {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-link span {
+      margin-left: 6px;
+      font-size: 14px;
+    }
+
+    /* Section headings */
+
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .section-kicker span {
+      color: var(--accent);
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 8px auto 0;
+    }
+
+    /* Icon grid cards */
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border-radius: var(--border-radius-card);
+      padding: 18px 18px 20px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.03);
+      text-align: center;
+    }
+
+    .card-number {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Why section */
+
+    .card-pill {
+      background-color: var(--bg-card);
+      border-radius: var(--border-radius-card);
+      padding: 18px 18px 20px;
+      text-align: left;
+    }
+
+    .card-pill .card-title {
+      margin-bottom: 4px;
+    }
+
+    /* Who section */
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .pill {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background-color: white;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      font-size: 13px;
+      color: var(--text-main);
+      text-align: center;
+      min-width: 220px;
+    }
+
+    /* CTA band */
+
+    .cta-band {
+      margin-top: 16px;
+      border-radius: 32px;
+      padding: 40px 24px;
+      background-image: linear-gradient(
+        135deg,
+        var(--bg-cta-gradient-start),
+        var(--bg-cta-gradient-end)
+      );
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cta-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-subtitle {
+      font-size: 14px;
+      margin-bottom: 24px;
+      opacity: 0.95;
+    }
+
+    .cta-band .btn-primary {
+      background-color: white;
+      color: #111827;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.35);
+    }
+
+    .cta-band .btn-primary:hover {
+      background-color: #e5ebff;
+    }
+
+    /* Footer */
+
+    .footer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .footer span {
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 960px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .container {
+        padding-inline: 16px;
+      }
+
+      .grid-4,
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cta-band {
+        border-radius: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="iframe-wrapper">
-    <iframe
-      loading="lazy"
-      src="https://www.canva.com/design/DAG54b3b23U/lRD1c7NgWIn_Ukk3F1pfOA/view?embed"
-      allowfullscreen="allowfullscreen"
-      allow="fullscreen"
-    ></iframe>
+  <div class="page">
+    <main class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <div class="brand-title">Content Funnel</div>
+          <div class="brand-subtitle">
+            Done-for-you content and lead funnel for executive coaches
+          </div>
+        </div>
+        <a
+          class="btn-primary"
+          href="mailto:cuberubix79@gmail.com?subject=Book%20a%20Clarity%20Call"
+        >
+          Book Clarity Call
+        </a>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-eyebrow">
+          Done-for-you content and lead funnel for executive coaches
+        </div>
+        <h1 class="hero-title">
+          Book <span class="highlight">30–60 High-Ticket Appointments</span>
+          Every Month<br />
+          Without Being On Camera
+        </h1>
+
+        <p class="hero-body hero-subline">
+          A complete done-for-you content funnel for B2B executive coaches who
+          want predictable leads, authority positioning, and scalable sales
+          without being on camera.
+        </p>
+
+        <div class="hero-bullets">
+          <div>
+            <div class="hero-bullet-title">
+              One interview to full content machine
+            </div>
+            <div class="hero-bullet-copy">
+              We turn a single strategic interview into long form and short form
+              content.
+            </div>
+          </div>
+          <div>
+            <div class="hero-bullet-title">
+              Done-for-you posting and optimization
+            </div>
+            <div class="hero-bullet-copy">
+              Titles, descriptions, thumbnails, posting. Everything is handled
+              for you.
+            </div>
+          </div>
+          <div>
+            <div class="hero-bullet-title">Appointment first strategy</div>
+            <div class="hero-bullet-copy">
+              Every asset is designed to book meetings, not chase views.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a
+            class="btn-primary"
+            href="mailto:cuberubix79@gmail.com?subject=Book%20a%20Clarity%20Call"
+          >
+            Book Clarity Call
+          </a>
+          <a href="#how-it-works" class="hero-link">
+            How it works <span>→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section id="how-it-works" class="section">
+        <div class="section-header">
+          <h2 class="section-kicker">
+            <span>How</span> It Works
+          </h2>
+          <p class="section-subtitle">
+            A simple, predictable process designed for busy executives.
+          </p>
+        </div>
+
+        <div class="grid grid-4">
+          <article class="card">
+            <div class="card-number">1</div>
+            <div class="card-title">Clarity Interview</div>
+            <p class="card-copy">
+              We extract your unique point of view, authority, and core offers
+              in one deep dive conversation.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">2</div>
+            <div class="card-title">Content Production</div>
+            <p class="card-copy">
+              Long form videos and written posts produced from the same
+              interview so every asset feels like you.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">3</div>
+            <div class="card-title">Creatives</div>
+            <p class="card-copy">
+              Thumbnails, titles, and descriptions crafted to pull in the right
+              decision makers.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">4</div>
+            <div class="card-title">Distribution and Leads</div>
+            <p class="card-copy">
+              Posting, calls to action, and appointment funnel setup so the
+              content turns into meetings.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Why This Works -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-kicker">
+            <span>Why</span> This Works
+          </h2>
+          <p class="section-subtitle">
+            Most agencies only chase views. We focus on meetings and revenue.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card-pill">
+            <div class="card-title">Long form authority</div>
+            <p class="card-copy">
+              We create flagship content that builds deep trust with corporate
+              buyers, not just quick clips.
+            </p>
+          </article>
+
+          <article class="card-pill">
+            <div class="card-title">Done-for-you delivery</div>
+            <p class="card-copy">
+              From editing to posting, our team handles the heavy lifting so you
+              stay focused on clients and sales.
+            </p>
+          </article>
+
+          <article class="card-pill">
+            <div class="card-title">Appointment first mindset</div>
+            <p class="card-copy">
+              Every script, clip, and caption is built to start conversations
+              that turn into booked calls.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Who This Is For -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-kicker">
+            <span>Who</span> This Is For
+          </h2>
+          <p class="section-subtitle">
+            Built for B2B executive coaches who sell high ticket coaching to
+            corporations and want a content engine that fills their calendar.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <div class="pill">Sell high ticket coaching to corporations</div>
+          <div class="pill">Want steady inbound leads each month</div>
+          <div class="pill">Prefer authority and depth over virality</div>
+        </div>
+      </section>
+
+      <!-- CTA Band -->
+      <section class="section">
+        <div class="cta-band">
+          <h2 class="cta-title">
+            Ready to build a done-for-you funnel that actually books meetings?
+          </h2>
+          <p class="cta-subtitle">
+            Book a clarity call and we will map out your first 90 days of
+            predictable appointments.
+          </p>
+          <a
+            class="btn-primary"
+            href="mailto:cuberubix79@gmail.com?subject=Book%20a%20Clarity%20Call"
+          >
+            Book Your Clarity Call
+          </a>
+
+          <div class="footer">
+            © 2025 Content Funnel. All rights reserved.
+            <span>Built for executive coaches · DFY funnels</span>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 </body>
 </html>

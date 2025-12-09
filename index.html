@@ -97,6 +97,22 @@
       box-shadow: 0 16px 35px rgba(37, 99, 235, 0.4);
     }
 
+    .btn-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .btn-note a {
+      text-decoration: underline;
+    }
+
     /* Hero */
 
     .hero {
@@ -317,6 +333,10 @@
       background-color: #e5ebff;
     }
 
+    .cta-band .btn-block {
+      align-items: center;
+    }
+
     /* Footer */
 
     .footer {
@@ -366,6 +386,10 @@
       .cta-band {
         border-radius: 24px;
       }
+
+      .btn-block {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -380,12 +404,18 @@
             Done-for-you content and lead funnel for executive coaches
           </div>
         </div>
-        <a
-          class="btn-primary"
-          href="mailto:cuberubix79@gmail.com?subject=Book%20a%20Clarity%20Call"
-        >
-          Book Clarity Call
-        </a>
+        <div class="btn-block">
+          <a
+            class="btn-primary"
+            href="https://cal.com/content-funnel/claritycall"
+          >
+            Book Clarity Call
+          </a>
+          <div class="btn-note">
+            or email me at
+            <a href="mailto:ayan@contentfunnel.org">ayan@contentfunnel.org</a>
+          </div>
+        </div>
       </header>
 
       <!-- Hero -->
@@ -433,12 +463,18 @@
         </div>
 
         <div class="hero-actions">
-          <a
-            class="btn-primary"
-            href="mailto:cuberubix79@gmail.com?subject=Book%20a%20Clarity%20Call"
-          >
-            Book Clarity Call
-          </a>
+          <div class="btn-block">
+            <a
+              class="btn-primary"
+              href="https://cal.com/content-funnel/claritycall"
+            >
+              Book Clarity Call
+            </a>
+            <div class="btn-note">
+              or email me at
+              <a href="mailto:ayan@contentfunnel.org">ayan@contentfunnel.org</a>
+            </div>
+          </div>
           <a href="#how-it-works" class="hero-link">
             How it works <span>→</span>
           </a>
@@ -562,12 +598,18 @@
             Book a clarity call and we will map out your first 90 days of
             predictable appointments.
           </p>
-          <a
-            class="btn-primary"
-            href="mailto:cuberubix79@gmail.com?subject=Book%20a%20Clarity%20Call"
-          >
-            Book Your Clarity Call
-          </a>
+          <div class="btn-block">
+            <a
+              class="btn-primary"
+              href="https://cal.com/content-funnel/claritycall"
+            >
+              Book Your Clarity Call
+            </a>
+            <div class="btn-note">
+              or email me at
+              <a href="mailto:ayan@contentfunnel.org">ayan@contentfunnel.org</a>
+            </div>
+          </div>
 
           <div class="footer">
             © 2025 Content Funnel. All rights reserved.
